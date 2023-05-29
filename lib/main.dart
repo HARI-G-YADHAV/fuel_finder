@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'fuel_me.dart';
-import 'dart:async' show Future;
-import 'package:flutter/services.dart' show rootBundle;
 
-Future<String> loadAsset() async {
-  return await rootBundle.loadString('android/assets/asset/store.txt');
-}
+//import 'dart:async' show Future;
+//import 'package:flutter/services.dart' show rootBundle;
 
 main()
 {
@@ -92,13 +89,13 @@ class _HomeState extends State<Home>{
                  width: 150.0,
                  height: 50.0,
                  child: ElevatedButton(
-                  onPressed: () {
-                    setState((){
-                      print('Clicked');
-                      print(paidController.text);
-                      print(distanceController.text);
-                      double ans = fuel_Me(paidController.text, distanceController.text);
-                      result = ans.toString();
+                  onPressed: () async {
+                    print('Clicked');
+                    print(paidController.text);
+                    print(distanceController.text);
+                    double ans = await fuel_Me(paidController.text, distanceController.text);
+                    setState(() {
+                      result = ans.toStringAsFixed(2);
                       print(result);
                     });
                    
